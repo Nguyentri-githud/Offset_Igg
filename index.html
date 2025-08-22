@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách Hành động Free Fire</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #e9f2f9; /* Màu nền xanh nhạt */
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #004a7c;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .item-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center; /* Căn giữa các item */
+        }
+
+        .item {
+            flex: 1 1 200px;
+            padding: 25px;
+            background-color: #f0f8ff; /* Màu nền item xanh da trời nhạt */
+            border-left: 5px solid #007bff; /* Viền xanh nổi bật */
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer; /* Biến con trỏ thành bàn tay */
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            background-color: #e6f7ff;
+        }
+
+        .item-name {
+            font-weight: 600;
+            color: #0056b3;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        
+        .item-id {
+            color: #555;
+            font-size: 1em;
+            font-weight: 500;
+        }
+
+        .copied-message {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #28a745;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8em;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .copied-message.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Danh sách Hành động Free Fire</h1>
+    <div class="item-list">
+        </div>
+</div>
+
+<script>
+    const data = {
+        'Chào': 909000001,
+        'Cười': 909000002,
+        'Khiêu khích': 909000003,
+        'Vỗ tay': 909000004,
+        'Dab': 909000005,
+        'Gà': 909000006,
+        'Vẫy tay': 909000007,
+        'Bàn nhảy': 909000008,
+        'Baby shark': 909000009,
+        'Tặng hoa': 909000010,
+        'Điệu nhảy xác ướp': 909000011,
+        'Chống đẩy': 909000012,
+        'Đào đều': 909000013,
+        'Ngai vàng chung kết': 909000014,
+        'Thăng long quyền': 909000015,
+        'Trò chơi nguy hiểm': 909000016,
+        'Vũ điệu hoang dã': 909000017,
+        'Đe dọa': 909000018,
+        'Lắc': 909000019,
+        'Bước đi của quỷ': 909000020,
+        'Trời sập': 909000021,
+        'Nguyệt cước': 909000022,
+        'Lắc lư': 909000023,
+        'Vũ điệu chiến trận': 909000024,
+        'Đập tay': 909000025,
+        'Quẩy tung nóc': 909000026,
+        'Xoay điên cuồng': 909000027,
+        'Xm8': 909000085,
+        'Cầm cờ': 909000034,
+        'Ak rồng xanh': 909000063,
+        'Scar cá mập': 909000068,
+        'Mp40 maxa': 909000075,
+        'M1014 ltlv7': 909000081,
+        'Long vcl': 914042001,
+        'Farafal': 909045001,
+        'Ump lv7': 909000098,
+        'Mp40 smlv7': 909040010,
+        'Mp5 lv7': 909033002,
+        'M1014 hlv7': 909039011,
+        'M1887 lv7': 909035007,
+        'M4a1 lv7': 909033001,
+        'Ac vcl': 914039001,
+        'Quỷ vcl': 914038001,
+        'An94 lv7': 909035012,
+        'Nắm đấm lv7': 909037011,
+        'Lục lv7': 909038012,
+        'Thomson lv7': 909038010,
+        'Gỗ kiên lv7': 909042008,
+        'Glory lv7': 909041005,
+        'Kata lv7': 909044015,
+        'Racing boy 7': 909043009,
+        'Cười ếch 7': 909045005,
+        'Các chó': 914000003,
+        'Không chim': 914000001,
+        'Siêu nhân xanh': 914000002,
+        'Thần vcl': 914044001,
+        'Cười bc 7': 909043003,
+        'Cao thủ st 7': 909041012,
+        'Cao thủ tc 7': 909041013,
+        'Lever': 909042007,
+        'Hộp thẻ lv': 909044005,
+        'Ngồi': 909043002,
+        'Fama lv7': 909000090,
+        'Vân lướt tư long': 909046001,
+        'Đỉnh của chóp': 909046002,
+        'Muốn bùng cháy': 909046003,
+        'Zo 123': 909046004,
+        'Ăn mừng phong cách': 909046005,
+        'Xoay súng': 909046006,
+        'Không phải lo': 909046008,
+        'Trần thủ': 909046009,
+        'Sadan': 909046010,
+        'Nedan': 909046011,
+        'Đua voi lửa': 909046012,
+        'Cầm cờ phong cách': 909046013,
+        'Rap cháy sườn': 909046014,
+        'Spatial awareness': 909046015,
+        'Nagi trapping': 909046016,
+        'Diankihung': 909045017,
+        'Naatunaatu': 909045016,
+    };
+
+    const itemList = document.querySelector('.item-list');
+
+    // Tạo các phần tử HTML từ đối tượng data
+    for (const [name, id] of Object.entries(data)) {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'item';
+        
+        const nameDiv = document.createElement('div');
+        nameDiv.className = 'item-name';
+        nameDiv.textContent = name; // Sử dụng tên có dấu trực tiếp
+
+        const idDiv = document.createElement('div');
+        idDiv.className = 'item-id';
+        idDiv.textContent = id;
+        
+        itemDiv.appendChild(nameDiv);
+        itemDiv.appendChild(idDiv);
+        
+        // Thêm sự kiện click
+        itemDiv.addEventListener('click', () => {
+            navigator.clipboard.writeText(id).then(() => {
+                const message = document.createElement('div');
+                message.className = 'copied-message';
+                message.textContent = 'Đã sao chép!';
+                itemDiv.appendChild(message);
+                
+                // Hiển thị và ẩn thông báo
+                setTimeout(() => {
+                    message.classList.add('show');
+                }, 10);
+                setTimeout(() => {
+                    message.classList.remove('show');
+                    setTimeout(() => {
+                        message.remove();
+                    }, 500);
+                }, 1500);
+            }).catch(err => {
+                console.error('Không thể sao chép: ', err);
+            });
+        });
+        
+        itemList.appendChild(itemDiv);
+    }
+</script>
+
+</body>
+</html>
